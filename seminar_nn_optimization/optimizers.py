@@ -113,7 +113,7 @@ class Adadelta:
                           elementwise_grad(self.z, argnum=1)(self.x0[0], self.x0[1])])
 
         # update calculation
-        self.Egt += self.gamma * self.Egt + (1 - self.gamma) * (dz_dx ** 2)
+        self.Egt = self.gamma * self.Egt + (1 - self.gamma) * (dz_dx ** 2)
         dw = (np.sqrt(self.Edwt) + self.epsilon) / (np.sqrt(self.Egt) + self.epsilon) * dz_dx
         self.Edwt = self.gamma * self.Edwt + (1 - self.gamma) * (dw ** 2)
 
